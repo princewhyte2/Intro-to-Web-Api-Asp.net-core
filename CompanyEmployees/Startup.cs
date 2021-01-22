@@ -1,4 +1,5 @@
 using AutoMapper;
+using CompanyEmployees.ActionFilters;
 using CompanyEmployees.Extensions;
 using Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -44,6 +45,9 @@ namespace CompanyEmployees
             });
 
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<ValidationFilterAttribute>();
+            services.AddScoped<ValidateEmployeeForCompanyExistsAttribute>();
+            services.AddScoped<ValidateCompanyExistsAttribute>();
             services.AddControllers(config =>
             {
                 config.RespectBrowserAcceptHeader = true;
